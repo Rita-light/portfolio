@@ -29,9 +29,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Valider le HTML
+        # css: false — évite les faux positifs sur oklch()/color-mix() (non reconnus par ce validateur)
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: .
+          css: false
 
       - name: Vérifier les liens et images locaux (hors-ligne, sans dépendre du réseau)
         uses: lycheeverse/lychee-action@v2
