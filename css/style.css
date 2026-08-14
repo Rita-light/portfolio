@@ -339,6 +339,10 @@ footer p{font-size:.82rem;font-family:var(--mono);letter-spacing:.04em}
 .tw-grp>label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:9px}
 .sw-row{display:flex;gap:9px}
 .sw{width:30px;height:30px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:transform .15s}
+.sw-violet{background:oklch(.66 .19 278)}
+.sw-bleu{background:oklch(.68 .16 248)}
+.sw-indigo{background:oklch(.6 .2 288)}
+.sw-cyan{background:oklch(.74 .13 208)}
 .sw:hover{transform:scale(1.08)}
 .sw.on{border-color:var(--ink)}
 .seg{display:flex;background:var(--bg-2);border-radius:9px;padding:3px;gap:3px}
