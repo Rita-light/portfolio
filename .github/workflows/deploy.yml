@@ -1,0 +1,64 @@
+# ============================================================
+# Pipeline CI/CD — validation puis déploiement automatique sur Vercel
+#
+# Déclenchement :
+#   - à chaque push sur la branche "master" (déploiement en production)
+#   - à chaque pull request vers "master" (validation seule, sans déployer)
+#
+# Étapes :
+#   1. validate — vérifie que le HTML est valide et qu'il n'y a pas
+#      de liens/images cassés en local (css, js, assets, uploads)
+#   2. deploy   — si (et seulement si) la validation réussit, publie
+#      le site sur Vercel en production
+# ============================================================
+
+name: CI/CD — Validation & Déploiement
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  validate:
+    name: Validation (HTML + liens/images)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Valider le HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+
+      - name: Vérifier les liens et images locaux (hors-ligne, sans dépendre du réseau)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --no-progress --exclude-mail --exclude-path .github index.html
+          fail: true
+
+  deploy:
+    name: Déploiement Vercel (production)
+    needs: validate
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer la CLI Vercel
+        run: npm install --global vercel@latest
+
+      - name: Lier le projet Vercel (via les secrets ORG_ID / PROJECT_ID)
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Déployer en production
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
