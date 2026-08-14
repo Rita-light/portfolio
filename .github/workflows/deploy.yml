@@ -38,7 +38,7 @@ jobs:
       - name: Vérifier les liens et images locaux (hors-ligne, sans dépendre du réseau)
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --offline --no-progress --exclude-mail --exclude-path .github index.html
+          args: --offline --no-progress --exclude-path .github index.html
           fail: true
 
   deploy:
