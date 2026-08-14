@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Rita Merveille Matsinkou — développeuse full-stack web & mobile à Joliette (QC). Portfolio de projets : Emhoni, TVA Poubelles, et plus." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://porfolio-rita-merveille.vercel.app/" />
+<meta property="og:title" content="Rita Merveille Matsinkou — Développeuse Full-Stack Web & Mobile" />
+<meta property="og:description" content="Portfolio : applications web & mobiles, du croquis à la mise en ligne." />
+<meta property="og:image" content="assets/og-share.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rita Merveille Matsinkou — Développeuse Full-Stack Web & Mobile" />
+<meta name="twitter:description" content="Portfolio : applications web & mobiles, du croquis à la mise en ligne." />
+<meta name="twitter:image" content="assets/og-share.png" />
+<meta name="theme-color" content="#09090F" />
+<link rel="canonical" href="https://porfolio-rita-merveille.vercel.app/" />
+<title>Rita Merveille Matsinkou — Développeuse Full-Stack Web & Mobile</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Styles extraits dans un fichier séparé, voir css/style.css -->
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">Rita&nbsp;<b>Merveille</b></a>
+    <div class="nav-links">
+      <a href="#about">À propos</a>
+      <a href="#skills">Compétences</a>
+      <a href="#projects">Projets</a>
+      <a href="#parcours">Parcours</a>
+    </div>
+    <a class="nav-cta" href="#contact">Me contacter</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <!-- barre de progression de lecture, remplie par js/script.js au scroll -->
+  <div id="scrollbar"></div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about">À propos</a>
+    <a href="#skills">Compétences</a>
+    <a href="#projects">Projets</a>
+    <a href="#parcours">Parcours</a>
+    <a class="nm-cta" href="#contact">Me contacter</a>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text rv">
+        <span class="eyebrow">Développeuse Full-Stack Web &amp; Mobile · Joliette, QC</span>
+        <h1>Rita Merveille<br /><em>Matsinkou</em></h1>
+        <p class="hero-lead">Je conçois et développe des applications web et mobiles — du premier croquis jusqu'à la mise en ligne.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Voir mes projets →</a>
+          <a class="btn btn-ghost" href="uploads/CV_Rita_Merveille_Matsinkou.pdf" download>Télécharger mon CV</a>
+        </div>
+        <div class="hero-meta">
+          <div><span class="k">Formation</span><span class="v">DEC en Informatique</span></div>
+          <div><span class="k">Spécialité</span><span class="v">Web &amp; Mobile</span></div>
+          <div><span class="k">Langues</span><span class="v">Français · Anglais (en apprentissage)</span></div>
+        </div>
+      </div>
+      <div class="hero-portrait rv">
+        <div class="portrait">
+          <img class="portrait-img" src="uploads/moi.jpeg" alt="Portrait de Rita Merveille Matsinkou" />
+          <span class="tag">Disponible pour embauche</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="blk" id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title serif">À propos</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="about-grid">
+      <p class="about-lead rv">De Yaoundé à Joliette, j'ai fait du <b>développement logiciel</b> mon métier — par curiosité, puis par passion de construire des outils qui servent vraiment.</p>
+      <div class="about-body rv">
+        <p>Après un BTS en Génie logiciel et bases de données au Cameroun, j'ai complété un DEC en Techniques de l'informatique au Cégep de Lanaudière. Ce parcours m'a donné une base solide en programmation, en bases de données et en analyse/conception (UML).</p>
+        <p>J'aime les projets complets : comprendre un besoin, modéliser, coder le back comme le front, et livrer une application utilisable — sur le web comme sur mobile. Lors de mon dernier stage chez Bio.Enviro.In, j'étais la seule développeuse de l'entreprise, ce qui m'a appris l'autonomie et le sens des responsabilités.</p>
+        <div class="values">
+          <span>Autonome</span><span>Rigoureuse</span><span>Curieuse</span><span>Orientée solution</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="blk" id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title serif">Compétences &amp; technologies</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/></svg></i>Développement web</h3>
+        <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>PHP</span><span>Angular</span><span>NestJS</span><span>Laravel / Lumen</span><span>API REST</span></div>
+      </div>
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M10.5 18h3"/></svg></i>Mobile</h3>
+        <div class="chips"><span>Kotlin · Android</span><span>Swift · iOS</span><span>Flutter</span></div>
+      </div>
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="m7 9 3 3-3 3"/><path d="M13 15h4"/></svg></i>Langages &amp; logiciel</h3>
+        <div class="chips"><span>Java</span><span>Go</span><span>C#</span><span class="soft">C / C++ (notions)</span></div>
+      </div>
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></i>Bases de données</h3>
+        <div class="chips"><span>MariaDB</span><span>PostgreSQL</span><span>SQL Server</span><span>SQLite</span><span>MySQL</span><span>Prisma</span></div>
+      </div>
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></i>Outils &amp; intégrations</h3>
+        <div class="chips"><span>Git</span><span>Docker</span><span>WebSockets</span><span>JWT</span><span>Stripe</span></div>
+      </div>
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v3M6 16v-2h12v2"/></svg></i>Analyse &amp; conception</h3>
+        <div class="chips"><span>UML</span><span>Modélisation BD</span><span>Cahier des charges</span></div>
+      </div>
+      <div class="skill-card rv">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></i>Méthodes, cloud &amp; IA</h3>
+        <div class="chips"><span>Agile</span><span>Scrum</span><span class="soft">CI/CD (notions)</span><span class="soft">DevOps (notions)</span><span>RAG · Azure</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="blk" id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title serif">Projets sélectionnés</h2>
+      <span class="rule"></span>
+    </div>
+
+    <!-- Featured: Emhoni -->
+    <article class="feature rv">
+      <div class="feature-text">
+        <span class="feature-badge">★ Projet phare</span>
+        <h3>Emhoni</h3>
+        <p class="feature-sub">Gestion de restaurant multi-succursales · Web &amp; Mobile</p>
+        <p class="feature-desc">Une application de gestion complète pour un restaurant à plusieurs succursales, déclinée en version web et en version mobile. Pensée pour piloter toute l'activité au quotidien, d'un seul endroit.</p>
+        <ul class="flist">
+          <li>Architecture à six rôles, avec accès et permissions séparés par restaurant</li>
+          <li>Paiement Stripe de bout en bout</li>
+          <li>Clavardage et suivi des commandes en temps réel (WebSockets)</li>
+          <li>Zones de livraison géolocalisées, fidélité et promotions</li>
+          <li>Synchronisation entre l'app web et l'app mobile, statistiques par succursale</li>
+        </ul>
+        <div class="feature-tags"><span>Angular</span><span>NestJS</span><span>Flutter</span><span>PostgreSQL</span><span>Prisma</span><span>Stripe</span><span>WebSockets</span></div>
+      </div>
+      <div class="feature-shots">
+        <div class="shot-web gallery" data-gallery data-interval="3600">
+          <img src="assets/emhoni-accueil.png" alt="Emhoni — accueil" class="on" loading="lazy" />
+          <img src="assets/emhoni-menu.png" alt="Emhoni — menu" loading="lazy" />
+          <img src="assets/emhoni-restaurants.png" alt="Emhoni — gestion des restaurants" loading="lazy" />
+          <img src="assets/emhoni-compte.png" alt="Emhoni — compte administrateur" loading="lazy" />
+          <div class="gdots"></div>
+        </div>
+        <div class="shot-mob gallery" data-gallery data-interval="3200">
+          <img src="assets/emhoni-mob-menu.png" alt="Emhoni mobile — menu" class="on" loading="lazy" />
+          <img src="assets/emhoni-mob-commandes.png" alt="Emhoni mobile — mes commandes" loading="lazy" />
+          <img src="assets/emhoni-mob-suivi.png" alt="Emhoni mobile — suivi de commande" loading="lazy" />
+          <img src="assets/emhoni-mob-livraison.png" alt="Emhoni mobile — suivi de livraison GPS" loading="lazy" />
+          <div class="gdots"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Featured: TVA Poubelles — contribution frontend au sein d'une équipe -->
+    <article class="feature alt rv">
+      <div class="feature-shots stack">
+        <div class="shot-web tall gallery" data-gallery data-interval="3800">
+          <img src="assets/tva-accueil.png" alt="TVA Poubelles — site public (accueil)" class="on" loading="lazy" />
+          <img src="assets/tva-inscription.png" alt="TVA Poubelles — inscription" loading="lazy" />
+          <span class="glabel">Site public</span>
+          <div class="gdots"></div>
+        </div>
+        <div class="shot-web tall gallery" data-gallery data-interval="3800">
+          <img src="assets/tva-kanban.png" alt="TVA Poubelles — portail (kanban)" class="on" loading="lazy" />
+          <img src="assets/tva-dashboard.png" alt="TVA Poubelles — portail (tableau de bord)" loading="lazy" />
+          <span class="glabel">Portail éditorial</span>
+          <div class="gdots"></div>
+        </div>
+      </div>
+      <div class="feature-text">
+        <span class="feature-badge">★ Projet phare · travail d'équipe</span>
+        <h3>TVA Poubelles</h3>
+        <p class="feature-sub">Plateforme de publication d'articles de nouvelles · Contribution Frontend</p>
+        <p class="feature-desc">Une plateforme éditoriale complète pour un média, développée en équipe : un site public de consultation, un portail de gestion pour les journalistes et modérateurs, et une API REST centralisée — inspirée d'un site de nouvelles type TVA. Ma contribution a porté sur le frontend Angular.</p>
+        <ul class="flist">
+          <li>Site public : recherche plein texte, filtres, commentaires imbriqués et favoris</li>
+          <li>Portail éditorial avec éditeur riche TipTap et tableau kanban glisser-déposer</li>
+          <li>Interface adaptée à cinq niveaux de rôles (RBAC)</li>
+          <li>Intégration à l'API Go/Echo, PostgreSQL et au déploiement Azure AKS/Terraform réalisés par l'équipe</li>
+        </ul>
+        <div class="feature-tags"><span>Angular 21</span><span>Angular Material</span><span>Tailwind CSS</span><span>Angular SSR</span><span>Go · Echo</span><span>PostgreSQL 16</span><span>Azure · AKS</span></div>
+      </div>
+    </article>
+
+    <!-- Grid -->
+    <div class="proj-grid">
+      <article class="pcard rv">
+        <div class="pthumb shot gallery" data-gallery data-interval="3000">
+          <img src="assets/cours-connexion.png" alt="Gestion de cours — connexion" class="on" loading="lazy" />
+          <img src="assets/cours-associations.png" alt="Gestion de cours — accueil" loading="lazy" />
+          <img src="assets/cours-etudiants.png" alt="Gestion de cours — gestion des étudiants" loading="lazy" />
+          <b>web · gestion</b>
+          <div class="gdots"></div>
+        </div>
+        <div class="pcard-body">
+          <h4>Gestion de cours</h4>
+          <p>Application web multi-rôles : permissions, cours, groupes et attributions pour étudiants, professeurs, coordonnateurs et administrateurs. Déployée sur cPanel.</p>
+          <div class="pcard-tags"><span>PHP</span><span>MariaDB</span><span>HTML/CSS</span><span>Docker</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb shot gallery" data-gallery data-interval="3000">
+          <img src="assets/nettoyage-accueil.png" alt="Joseph Clean — accueil" class="on" loading="lazy" />
+          <img src="assets/nettoyage-services.png" alt="Joseph Clean — nos services" loading="lazy" />
+          <img src="assets/nettoyage-estimation.png" alt="Joseph Clean — demande d'estimation" loading="lazy" />
+          <b>web · client</b>
+          <div class="gdots"></div>
+        </div>
+        <div class="pcard-body">
+          <h4>Joseph Clean — nettoyage de textile</h4>
+          <p>Site vitrine multi-pages pour un service de nettoyage de textiles (tapis, canapés, fauteuils), avec formulaire d'estimation en ligne et système d'avis clients. Mandat freelance.</p>
+          <div class="pcard-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb code"><span class="glyph">⌘<small>electron · ts</small></span><b>desktop · gestion</b></div>
+        <div class="pcard-body">
+          <h4>Auto-École COS — gestion administrative</h4>
+          <p>Application de bureau multiplateforme pour un centre de formation : dossiers, inscriptions, paiements et suivi administratif des élèves, avec interface CRUD pour le personnel.</p>
+          <div class="pcard-tags"><span>TypeScript</span><span>Electron</span><span>Vite</span><span>Prisma</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb shot"><img src="assets/messagerie.png" alt="Messagerie P2P — interface Avalonia" loading="lazy" /><b>réseau · go</b></div>
+        <div class="pcard-body">
+          <h4>Messagerie P2P</h4>
+          <p>Messagerie instantanée pair-à-pair sur réseau local, développée en Go avec une interface Avalonia.</p>
+          <div class="pcard-tags"><span>Go</span><span>Avalonia</span><span>Réseau</span><span>P2P</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb shot"><img src="assets/echecs.png" alt="Jeu d'échecs en C#" loading="lazy" /><b>desktop · c#</b></div>
+        <div class="pcard-body">
+          <h4>Jeu d'échecs</h4>
+          <p>Jeu d'échecs complet en C# : règles de déplacement, tours de jeu, score et actions (abandon, nulle).</p>
+          <div class="pcard-tags"><span>C#</span><span>.NET</span><span>POO</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb shot gallery" data-gallery data-interval="3200">
+          <img src="assets/sim-carte.png" alt="Simulateur — carte du monde" class="on" loading="lazy" />
+          <img src="assets/sim-generateur.png" alt="Simulateur — générateur de scénarios" loading="lazy" />
+          <b>desktop · c#</b>
+          <div class="gdots"></div>
+        </div>
+        <div class="pcard-body">
+          <h4>Simulateur de trafic aérien</h4>
+          <p>Simulation événementielle du trafic aérien mondial sur une carte, pilotée par un générateur de scénarios configurable.</p>
+          <div class="pcard-tags"><span>C#</span><span>.NET</span><span>WinForms</span><span>POO</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb code"><span class="glyph">RAG<small>~/ai · azure</small></span><b>ia · prototype</b></div>
+        <div class="pcard-body">
+          <h4>Mini système RAG</h4>
+          <p>Prototype de recherche augmentée par IA avec interface web, déployé sur Azure.</p>
+          <div class="pcard-tags"><span>Azure</span><span>RAG</span><span>Web</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb code"><span class="glyph">{ }<small>rest api</small></span><b>api · go</b></div>
+        <div class="pcard-body">
+          <h4>API de gestion de cartes</h4>
+          <p>API REST de gestion de cartes, conçue et implémentée en Go.</p>
+          <div class="pcard-tags"><span>Go</span><span>API REST</span></div>
+        </div>
+      </article>
+      <article class="pcard rv">
+        <div class="pthumb code"><span class="glyph">▸ ♠<small>swift · kotlin</small></span><b>mobile · jeux</b></div>
+        <div class="pcard-body">
+          <h4>Jeux mobiles</h4>
+          <p>Charivari (iOS / Swift) et Blackjack (Android / Kotlin) — deux jeux mobiles natifs.</p>
+          <div class="pcard-tags"><span>Swift</span><span>Kotlin</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARCOURS ============ -->
+<section class="blk" id="parcours">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title serif">Parcours</h2>
+      <span class="rule"></span>
+    </div>
+
+    <!-- Expérience en développement, du plus récent au plus ancien -->
+    <h3 class="sub-label">Expérience</h3>
+    <div class="tl">
+      <div class="tl-row rv">
+        <div class="tl-when">2026<small>Mars – Mai · Joliette, QC</small></div>
+        <div class="tl-what">
+          <h3>Stage en développement web</h3>
+          <p class="org">Bio.Enviro.In</p>
+          <ul>
+            <li>Seule développeuse de l'entreprise, en lien avec l'équipe agronomique</li>
+            <li>Migration vers une architecture multi-applications (sol / serre) avec authentification centralisée (SSO)</li>
+            <li>Calculateurs de fertilisation NPK, d'engrais hydroponique et d'amendement calcique</li>
+            <li>Mise en production de l'architecture, rédaction de guides techniques et accompagnement des utilisateurs</li>
+            <li>Stack : Laravel / Lumen, Angular, MySQL, Docker, JWT</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-row rv">
+        <div class="tl-when">2024<small>Février – Mars · Joliette, QC</small></div>
+        <div class="tl-what">
+          <h3>Développeuse web — mandat freelance</h3>
+          <p class="org">Joseph Clean</p>
+          <ul>
+            <li>Conception d'un site vitrine pour une entreprise de nettoyage de textiles</li>
+            <li>Développement d'un formulaire d'estimation et intégration d'un système d'avis clients</li>
+            <li>Stack : HTML, CSS, JavaScript</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-row rv">
+        <div class="tl-when">2023<small>Mars – Septembre · Yaoundé, Cameroun</small></div>
+        <div class="tl-what">
+          <h3>Développeuse logiciel — temps partiel</h3>
+          <p class="org">Auto-École COS</p>
+          <ul>
+            <li>Application de bureau multiplateforme centralisant dossiers, inscriptions, paiements et suivi administratif des élèves</li>
+            <li>Conception des fonctionnalités CRUD et d'une interface destinée au personnel administratif</li>
+            <li>Stack : TypeScript, Electron, Vite, Prisma, base de données relationnelle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-row rv">
+        <div class="tl-when">2022 – 2023<small>Oct. – Jan. · Cameroun</small></div>
+        <div class="tl-what">
+          <h3>Stage en développement web</h3>
+          <p class="org">ITS Formation · Centre de formation professionnelle</p>
+          <ul>
+            <li>Site web du centre avec inscription des étudiants en ligne</li>
+            <li>Interface de gestion : validation des inscriptions, suivi des étudiants et génération des cartes d'étudiant</li>
+            <li>Stack : HTML, CSS, PHP, MySQL</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expérience complémentaire et implication (hors développement) -->
+    <h3 class="sub-label">Expérience complémentaire &amp; implication</h3>
+    <div class="tl">
+      <div class="tl-row rv">
+        <div class="tl-when">2024 – Aujourd'hui<small>Joliette, QC</small></div>
+        <div class="tl-what">
+          <h3>Instructrice d'équipier</h3>
+          <p class="org">McDonald's</p>
+          <ul>
+            <li>Formation et intégration des nouveaux employés</li>
+            <li>Gestion des priorités et du temps en environnement rapide</li>
+            <li>Communication efficace et service à la clientèle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-row rv">
+        <div class="tl-when">2021 – 2022<small>Yaoundé, Cameroun</small></div>
+        <div class="tl-what">
+          <h3>Secrétaire</h3>
+          <p class="org">Groupe A.C.E Cop'Monde</p>
+          <ul>
+            <li>Organisation de réunions et rédaction de rapports</li>
+            <li>Planification d'activités collaboratives et accompagnement d'enfants</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-label">Formation</h3>
+    <div class="edu-grid">
+      <div class="edu rv">
+        <span class="yr">2023 – 2026</span>
+        <h4>DEC — Techniques de l'informatique</h4>
+        <p>Cégep de Lanaudière à Joliette, QC</p>
+      </div>
+      <div class="edu rv">
+        <span class="yr">2021 – 2023</span>
+        <h4>BTS — Génie logiciel &amp; bases de données</h4>
+        <p>Institut SIANTOU Supérieur, Yaoundé, Cameroun</p>
+      </div>
+      <div class="edu rv">
+        <span class="yr">2021</span>
+        <h4>Baccalauréat (diplôme d'études secondaires)</h4>
+        <p>Lycée Bilingue d'Ékounou, Yaoundé, Cameroun</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="blk" id="contact">
+  <div class="wrap">
+    <div class="contact rv">
+      <span class="eyebrow">Contact</span>
+      <h2>Travaillons <em>ensemble</em>.</h2>
+      <p class="contact-lead">Je suis à la recherche d'un premier poste en développement web ou mobile. Une opportunité, une question ? Écrivez-moi — je réponds avec plaisir.</p>
+      <div class="contact-grid">
+        <div class="cinfo">
+          <a href="mailto:ritamerveille22@yahoo.com"><span class="ci-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="ci-tx"><span class="k">Email</span><span class="v">ritamerveille22@yahoo.com</span></span></a>
+          <a href="tel:+15799604306"><span class="ci-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="ci-tx"><span class="k">Téléphone</span><span class="v">579-960-4306</span></span></a>
+          <a href="https://www.linkedin.com/in/rita-merveille-matsinkou-761b46293/" target="_blank" rel="noopener"><span class="ci-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span><span class="ci-tx"><span class="k">LinkedIn</span><span class="v">rita-merveille-matsinkou ↗</span></span></a>
+          <a href="https://github.com/Rita-light?tab=repositories" target="_blank" rel="noopener"><span class="ci-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58l-.01-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></span><span class="ci-tx"><span class="k">GitHub</span><span class="v">github.com/Rita-light ↗</span></span></a>
+          <div><span class="ci-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ci-tx"><span class="k">Localisation</span><span class="v">Joliette, QC · Canada</span></span></div>
+        </div>
+        <div class="contact-cta">
+          <a class="btn btn-cv" href="uploads/CV_Rita_Merveille_Matsinkou.pdf" download>Télécharger mon CV ↓</a>
+          <a class="btn btn-out" href="mailto:ritamerveille22@yahoo.com">M'envoyer un message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fbrand serif">Rita Merveille Matsinkou</div>
+  <p>Développeuse Full-Stack Web &amp; Mobile · Joliette, QC · 2026</p>
+  <div class="fsocial">
+    <a href="https://www.linkedin.com/in/rita-merveille-matsinkou-761b46293/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+    <a href="https://github.com/Rita-light?tab=repositories" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58l-.01-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>GitHub</a>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS PANEL (personnalisation, pilotée par js/script.js) ============ -->
+<div id="tweaks">
+  <div class="tw-head">
+    <b>Tweaks</b>
+    <button id="tw-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="tw-grp">
+    <label>Couleur d'accent</label>
+    <div class="sw-row" id="tw-accent">
+      <div class="sw on" data-acc="" style="background:oklch(.66 .19 278)" title="Violet"></div>
+      <div class="sw" data-acc="accent-bleu" style="background:oklch(.68 .16 248)" title="Bleu"></div>
+      <div class="sw" data-acc="accent-indigo" style="background:oklch(.6 .2 288)" title="Indigo"></div>
+      <div class="sw" data-acc="accent-cyan" style="background:oklch(.74 .13 208)" title="Cyan"></div>
+    </div>
+  </div>
+  <div class="tw-grp">
+    <label>Ambiance du fond</label>
+    <div class="seg" id="tw-amb">
+      <button class="on" data-amb="">Noir</button>
+      <button data-amb="amb-ardoise">Ardoise</button>
+    </div>
+  </div>
+  <div class="tw-grp">
+    <label>Police des titres</label>
+    <div class="seg" id="tw-head">
+      <button class="on" data-head="">Serif</button>
+      <button data-head="headings-sans">Moderne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Comportements (galeries, menu mobile, scroll-spy, reveal, tweaks) extraits dans js/script.js -->
+<script src="js/script.js" defer></script>
+</body>
+</html>
