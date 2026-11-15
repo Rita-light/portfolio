@@ -1,10 +1,11 @@
 /* ============================================================
    SCRIPT.JS — Portfolio Rita Merveille Matsinkou
-   4 modules indépendants :
+   5 modules indépendants :
    1. Galeries d'images (auto-rotation + points de navigation)
    2. Menu mobile (burger)
    3. Nav : scroll-spy + barre de progression + condensation au scroll
    4. Animations d'apparition au scroll ("reveal")
+   5. Année du pied de page
    ============================================================ */
 
 /* ---------- 1. Galeries : auto-cycle + points ---------- */
@@ -117,4 +118,10 @@
 
   // filet de sécurité : ne jamais laisser du contenu caché indéfiniment
   setTimeout(revealAll,1400);
+})();
+
+/* ---------- 5. Année du pied de page (toujours à jour) ---------- */
+(function(){
+  const year=document.getElementById('year');
+  if(year) year.textContent=new Date().getFullYear();
 })();

@@ -1,6 +1,6 @@
-# Portfolio — Rita Merveille Matsinkou
+# Portfolio - Rita Merveille Matsinkou
 
-Site portfolio personnel présentant mon parcours, mes compétences et mes projets en développement web & mobile.
+Site portfolio personnel de développeuse de logiciels Full-Stack (Montréal & Joliette, QC) : expérience, formation, compétences et projets en développement web, mobile, applications de bureau, API et support technique.
 
 **En ligne :** [porfolio-rita-merveille.vercel.app](https://porfolio-rita-merveille.vercel.app)
 
@@ -10,7 +10,7 @@ Site 100 % statique (HTML/CSS/JS), sans framework ni dépendances.
 
 Chaque `push` sur la branche `master` déclenche un pipeline GitHub Actions qui :
 1. **Valide** le HTML et vérifie qu'aucun lien ou image local n'est cassé
-2. **Déploie automatiquement** la nouvelle version en production sur Vercel — uniquement si la validation réussit
+2. **Déploie automatiquement** la nouvelle version en production sur Vercel, uniquement si la validation réussit
 
 Si la validation échoue, le déploiement est bloqué et le site en ligne n'est pas affecté.
 

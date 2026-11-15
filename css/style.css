@@ -1,6 +1,8 @@
 /* ============================================================
    STYLE.CSS — Portfolio Rita Merveille Matsinkou
-   Organisation : Tokens > Base > Nav > Hero > Sections > Composants > Utilitaires
+   Organisation :
+   Tokens > Base > Nav > Hero > Hero art > Section shell > Glass > About > Skills
+   > Projects > Expérience & formation > Contact > Footer > Reveal
    ============================================================ */
 
 /* ============ TOKENS (couleurs, polices, tailles réutilisées) ============ */
@@ -43,6 +45,9 @@ img{display:block;max-width:100%}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
 .serif{font-family:var(--serif)}
 .mono{font-family:var(--mono)}
+/* Lien « Aller au contenu » : invisible, apparaît au premier Tab (navigation au clavier) */
+.skip-link{position:absolute;left:16px;top:-60px;z-index:100;padding:10px 16px;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;transition:top .2s}
+.skip-link:focus{top:12px}
 .eyebrow{
   font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--accent-deep);font-weight:500;
@@ -83,11 +88,12 @@ nav.shrink .nav-in{padding:10px 40px}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* superposé sous la barre : s'ouvrir/se fermer ne décale jamais le contenu de la page */
 .nav-mobile{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;gap:2px;padding:0 28px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s,padding .3s;background:color-mix(in oklab,var(--bg) 96%,transparent);border-top:1px solid var(--line-soft)}
-.nav-mobile.open{max-height:340px;opacity:1;padding:14px 28px 22px}
+.nav-mobile.open{max-height:420px;opacity:1;padding:14px 28px 22px}
 .nav-mobile a{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--ink);padding:11px 0;border-bottom:1px solid var(--line-soft);transition:color .2s,padding-left .2s}
 .nav-mobile a:hover{color:var(--accent-deep);padding-left:6px}
 .nav-mobile .nm-cta{font-family:var(--sans);font-size:1rem;font-weight:600;color:var(--accent-deep);border-bottom:none;margin-top:8px}
-@media(max-width:820px){
+/* 960px : en dessous, les 5 liens + le bouton ne tiennent plus sur une ligne */
+@media(max-width:960px){
   .nav-links{display:none}
   .nav-cta{display:none}
   .nav-burger{display:flex}
@@ -99,7 +105,7 @@ nav.shrink .nav-in{padding:10px 40px}
 /* ============ HERO ============ */
 .hero{padding:clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px);position:relative}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 82% -20%,var(--accent-tint),transparent 58%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
 .hero h1{
   font-family:var(--serif);font-weight:500;
   font-size:clamp(3.1rem,7.2vw,6rem);line-height:.96;letter-spacing:-.025em;
@@ -123,32 +129,100 @@ nav.shrink .nav-in{padding:10px 40px}
 .hero-meta div{display:flex;flex-direction:column;gap:3px}
 .hero-meta .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
 .hero-meta .v{font-size:.96rem;font-weight:600}
-.hero-portrait{position:relative}
-.hero-portrait::before{
-  content:"";position:absolute;inset:0;
-  transform:translate(16px,18px);
-  border-radius:140px 26px 140px 26px;
-  background:var(--grad);opacity:.5;z-index:0;
-  filter:blur(2px);
-}
-.portrait{
-  position:relative;aspect-ratio:4/5;width:100%;z-index:1;
-  border-radius:140px 26px 140px 26px;overflow:hidden;
-  box-shadow:0 30px 70px -30px rgba(0,0,0,.5);
-}
-.portrait-img{width:100%;height:100%;object-fit:cover;object-position:55% 28%}
-.portrait::after{content:"";position:absolute;inset:0;border-radius:140px 26px 140px 26px;border:1px solid rgba(255,255,255,.14);pointer-events:none}
-.portrait .tag{
-  position:absolute;left:14px;bottom:14px;z-index:3;
+.hero-visual{position:relative;min-width:0}
+.hero-visual .tag{
+  display:table;margin:18px auto 0;
   font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
   background:color-mix(in oklab,var(--ink) 82%,transparent);color:var(--bg);
-  padding:7px 12px;border-radius:8px;backdrop-filter:blur(4px);
+  padding:7px 12px;border-radius:8px;
 }
 @media(max-width:820px){
   .hero-grid{grid-template-columns:1fr;gap:40px}
-  .portrait{max-width:360px}
-  .hero-portrait::before{display:none}
 }
+
+/* ============ HERO ART (illustration abstraite, CSS pur) ============
+   Toutes les tailles sont en cqw (% de la largeur du conteneur) :
+   l'illustration se redimensionne d'un bloc, du téléphone à l'ordinateur.
+   Calques, du fond vers l'avant :
+   halo > grille de points > anneaux > noyau « RM » > tuiles en orbite */
+.hero-art{
+  --orbit:38cqw;                    /* rayon de l'orbite des tuiles */
+  --tile:16cqw;                     /* taille d'une tuile */
+  --count:7;                        /* nombre de tuiles (à ajuster si on en ajoute) */
+  position:relative;width:100%;max-width:500px;margin-inline:auto;aspect-ratio:1;
+  container-type:inline-size;isolation:isolate;
+}
+.hero-art>*{position:absolute}
+
+/* Halo lumineux derrière le noyau */
+.hero-art::before{content:"";position:absolute;inset:20%;z-index:-1;border-radius:50%;background:var(--grad);filter:blur(60px);opacity:.45}
+
+/* Grille de points, estompée vers les bords */
+.ha-grid{
+  inset:0;
+  background:radial-gradient(circle at 1px 1px,var(--line) 1px,transparent 0) 0 0/22px 22px;
+  -webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);
+}
+
+/* Anneaux concentriques (centrés avec translate) */
+.ha-ring{left:50%;top:50%;translate:-50% -50%;border-radius:50%}
+.ha-ring--outer{width:96cqw;height:96cqw;border:1px solid var(--line-soft)}
+.ha-ring--orbit{
+  width:calc(var(--orbit) * 2);height:calc(var(--orbit) * 2);
+  border:1.5px dashed color-mix(in oklab,var(--accent) 45%,transparent);
+  animation:ha-spin 80s linear infinite;
+}
+/* petit satellite lumineux qui tourne avec l'orbite */
+.ha-ring--orbit::after{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 14px var(--accent-2)}
+.ha-ring--inner{width:52cqw;height:52cqw;border:1px solid var(--line);background:radial-gradient(circle,var(--accent-tint),transparent 70%)}
+
+/* Noyau central : verre + bordure en dégradé + monogramme */
+.ha-core{
+  left:50%;top:50%;translate:-50% -50%;
+  width:32cqw;height:32cqw;border-radius:30%;
+  display:grid;place-content:center;justify-items:center;gap:.8cqw;
+  border:1.5px solid transparent;
+  background:linear-gradient(color-mix(in oklab,var(--card) 88%,transparent),color-mix(in oklab,var(--card) 88%,transparent)) padding-box,var(--grad) border-box;
+  box-shadow:0 20px 50px -20px color-mix(in oklab,var(--accent) 60%,transparent);
+}
+.ha-core b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:11cqw;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ha-core small{font-family:var(--mono);font-size:max(.55rem,2.2cqw);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* Tuiles en orbite : chaque tuile reçoit un rang (--i). L'angle (--a) en est déduit,
+   en partant du haut (-90deg) et en répartissant les tuiles à égale distance.
+   La tuile est placée sur le cercle, puis tournée en sens inverse pour rester droite. */
+.ha-tile{
+  --i:0;
+  --a:calc(-90deg + 360deg / var(--count) * var(--i));
+  left:50%;top:50%;width:var(--tile);height:var(--tile);
+  margin:calc(var(--tile) / -2) 0 0 calc(var(--tile) / -2);
+  transform:rotate(var(--a)) translate(var(--orbit)) rotate(calc(var(--a) * -1));
+  display:grid;place-content:center;justify-items:center;gap:1cqw;
+  border-radius:28%;color:var(--accent-deep);
+  background:color-mix(in oklab,var(--card) 60%,transparent);
+  border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 14px 30px -16px rgba(0,0,0,.7);
+  animation:ha-float 6s ease-in-out infinite;
+  animation-delay:calc(var(--i) * -1s);  /* décalage : les tuiles ne flottent pas en même temps */
+}
+.ha-tile svg{width:6cqw;height:6cqw;stroke-linecap:round;stroke-linejoin:round}
+.ha-tile i{font-style:normal;font-family:var(--mono);font-size:max(.5rem,1.8cqw);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+/* rang de chaque tuile (même ordre que dans index.html) ; une sur deux en bleu */
+.ha-tile--code{--i:0}
+.ha-tile--web{--i:1;color:var(--accent-2)}
+.ha-tile--mobile{--i:2}
+.ha-tile--desktop{--i:3;color:var(--accent-2)}
+.ha-tile--data{--i:4}
+.ha-tile--cloud{--i:5;color:var(--accent-2)}
+.ha-tile--support{--i:6}
+/* tuile « Code » mise en avant */
+.ha-tile--code{background:var(--grad);border-color:transparent;color:#fff}
+.ha-tile--code i{color:rgba(255,255,255,.85)}
+
+@keyframes ha-spin{to{rotate:360deg}}
+@keyframes ha-float{50%{translate:0 -1.6cqw}}
+@media(prefers-reduced-motion:reduce){.ha-ring--orbit,.ha-tile{animation:none}}
 
 /* ============ SECTION SHELL (en-tête générique "01 — Titre ————") ============ */
 section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
@@ -156,6 +230,38 @@ section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
 .sec-num{font-family:var(--mono);font-size:.8rem;color:var(--accent-deep)}
 .sec-title{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.2vw,3.1rem);letter-spacing:-.02em;line-height:1.04}
 .rule{height:1px;background:var(--line);flex:1;align-self:center;margin-bottom:8px}
+
+/* ============ GLASS (cartes en verre + halos, partagés par toutes les sections) ============ */
+/* Halos lumineux flous derrière les sections : ils rendent l'effet de verre visible */
+#skills,#projects,#experience,#formation{isolation:isolate;overflow:hidden}
+#skills::before,#projects::before,#projects::after,
+#experience::before,#experience::after,#formation::before{
+  content:"";position:absolute;z-index:-1;border-radius:50%;
+  filter:blur(90px);opacity:.3;pointer-events:none;
+}
+#skills::before{width:480px;height:480px;top:14%;left:-200px;background:var(--accent-2);opacity:.22}
+#projects::before{width:540px;height:540px;top:4%;right:-200px;background:var(--accent);opacity:.25}
+#projects::after{width:460px;height:460px;bottom:8%;left:-220px;background:var(--accent-2);opacity:.2}
+#experience::before{width:520px;height:520px;top:8%;right:-180px;background:var(--accent)}
+#experience::after{width:420px;height:420px;bottom:6%;left:-200px;background:var(--accent-2)}
+#formation::before{width:480px;height:480px;top:18%;left:-160px;background:var(--accent-2);opacity:.25}
+
+/* Carte en verre dépoli : compétences, projets, timeline, formation */
+.skill-card,.feature,.pcard,.tl-row,.edu{
+  border-radius:22px;
+  background:color-mix(in oklab,var(--card) 55%,transparent);
+  border:1px solid rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 24px 50px -30px rgba(0,0,0,.65);
+  transition:border-color .3s,box-shadow .3s,translate .3s;
+}
+.skill-card:hover,.feature:hover,.pcard:hover,.tl-row:hover,.edu:hover{
+  border-color:color-mix(in oklab,var(--accent) 45%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 28px 60px -28px color-mix(in oklab,var(--accent) 45%,transparent);
+}
+/* soulèvement au survol : « translate » plutôt que « transform »,
+   pour ne pas entrer en conflit avec l'animation d'apparition (.rv) */
+.skill-card:hover,.pcard:hover{translate:0 -4px}
 
 /* ============ ABOUT (à propos) ============ */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,80px)}
@@ -168,11 +274,7 @@ section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
 @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:28px}}
 /* ============ SKILLS (compétences) ============ */
 .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.5vw,30px)}
-.skill-card{
-  background:var(--card);border:1px solid var(--line-soft);border-radius:16px;
-  padding:26px 28px;transition:transform .25s,box-shadow .25s,border-color .25s;
-}
-.skill-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -24px rgba(0,0,0,.3);border-color:var(--line)}
+.skill-card{padding:26px 28px}
 .skill-card h3{font-family:var(--sans);font-size:1.02rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .skill-card h3 i{width:34px;height:34px;border-radius:10px;background:var(--accent-tint);color:var(--accent-deep);display:grid;place-items:center;flex:none;font-style:normal}
 .skill-card h3 i svg{width:18px;height:18px;stroke-linecap:round;stroke-linejoin:round}
@@ -183,11 +285,7 @@ section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
 @media(max-width:680px){.skills-grid{grid-template-columns:1fr}}
 
 /* ============ PROJECTS (projets) ============ */
-.feature{
-  background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
-  display:grid;grid-template-columns:1.05fr 1fr;gap:0;
-  box-shadow:0 30px 70px -40px rgba(0,0,0,.4);
-}
+.feature{overflow:hidden;display:grid;grid-template-columns:1.05fr 1fr;gap:0}
 .feature+.feature{margin-top:26px}
 .feature.alt{grid-template-columns:1fr 1.05fr}
 .feature-text{padding:clamp(30px,3.4vw,52px);display:flex;flex-direction:column}
@@ -237,11 +335,7 @@ section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
 
 /* Grille des projets secondaires */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
-.pcard{
-  background:var(--card);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden;
-  display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s,border-color .25s;
-}
-.pcard:hover{transform:translateY(-5px);box-shadow:0 24px 44px -26px rgba(0,0,0,.35);border-color:var(--line)}
+.pcard{overflow:hidden;display:flex;flex-direction:column}
 .pthumb.shot:not(.gallery) img{transition:transform .55s cubic-bezier(.2,.7,.2,1)}
 .pcard:hover .pthumb.shot:not(.gallery) img{transform:scale(1.06)}
 .pthumb{
@@ -271,16 +365,26 @@ section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
 @media(max-width:880px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.proj-grid{grid-template-columns:1fr}}
 
-/* ============ TIMELINE (parcours : expérience + formation) ============ */
+/* ============ EXPÉRIENCE & FORMATION (timeline + cartes de formation) ============ */
 .sub-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:12px}
 .sub-label::after{content:"";flex:1;height:1px;background:var(--line-soft)}
-.tl{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
-.tl-row{
-  display:grid;grid-template-columns:200px 1fr;gap:30px;
-  padding:30px 0;border-bottom:1px solid var(--line);align-items:start;
+
+/* Ligne de temps verticale avec une pastille par carte */
+.tl{position:relative;display:grid;gap:18px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:2px;border-radius:2px;background:linear-gradient(var(--accent),var(--accent-2) 65%,transparent)}
+.tl-row{position:relative;display:grid;grid-template-columns:190px 1fr;gap:28px;align-items:start;padding:28px 30px}
+.tl-row::before{content:"";position:absolute;left:-31px;top:34px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 0 5px var(--accent-tint)}
+.tl-row.is-now::before{background:var(--accent);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--accent) 55%,transparent)}70%,100%{box-shadow:0 0 0 12px transparent}}
+@media(prefers-reduced-motion:reduce){.tl-row.is-now::before{animation:none}}
+.tl-when{font-family:var(--serif);font-size:1.7rem;font-weight:500;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.tl-when small{display:block;font-family:var(--mono);color:var(--ink-faint);margin-top:10px;font-size:.74rem;line-height:1.5;letter-spacing:.02em}
+.now-badge{
+  display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent-deep);background:var(--accent-tint);padding:5px 11px;border-radius:999px;
 }
-.tl-when{font-family:var(--mono);font-size:.82rem;color:var(--accent-deep);padding-top:4px}
-.tl-when small{display:block;color:var(--ink-faint);margin-top:6px;font-size:.76rem;letter-spacing:.02em}
+.now-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-deep)}
 .tl-what h4{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:-.01em;line-height:1.1}
 .tl-what .org{color:var(--accent-deep);font-weight:600;font-size:.96rem;margin:4px 0 12px}
 .tl-what .org a,
@@ -308,13 +412,34 @@ section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
 .tl-what ul{list-style:none;display:grid;gap:8px}
 .tl-what li{font-size:.96rem;color:var(--ink-soft);padding-left:18px;position:relative}
 .tl-what li::before{content:"–";position:absolute;left:0;color:var(--accent)}
-.tl+.sub-label{margin-top:48px}
+.tl+.sub-label,.edu-grid+.sub-label{margin-top:48px}
 .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.edu{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:22px 24px}
+.edu{position:relative;overflow:hidden;padding:26px 26px 24px}
+/* anneaux décoratifs dans le coin de chaque carte */
+.edu::after{content:"";position:absolute;top:-46px;right:-46px;width:130px;height:130px;border-radius:50%;border:1px solid var(--line);box-shadow:0 0 0 18px color-mix(in oklab,var(--accent) 5%,transparent);pointer-events:none}
+.edu-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:var(--accent-tint);color:var(--accent-deep)}
+.edu-ic svg{width:22px;height:22px;stroke-linecap:round;stroke-linejoin:round}
 .edu .yr{font-family:var(--mono);font-size:.74rem;color:var(--accent-deep);letter-spacing:.06em}
-.edu h4{font-family:var(--serif);font-size:1.16rem;font-weight:500;margin:8px 0 4px;line-height:1.18}
+.edu h4{font-family:var(--serif);font-size:1.2rem;font-weight:500;margin:8px 0 4px;line-height:1.18}
 .edu p{font-size:.86rem;color:var(--ink-soft)}
-@media(max-width:760px){.tl-row{grid-template-columns:1fr;gap:12px}.edu-grid{grid-template-columns:1fr}}
+/* Certification : carte vitrine horizontale avec bordure en dégradé */
+.edu-grid.single{grid-template-columns:minmax(0,640px)}
+.edu-cert{
+  display:flex;align-items:center;gap:22px;
+  border:1px solid transparent;
+  background:linear-gradient(color-mix(in oklab,var(--card) 92%,transparent),color-mix(in oklab,var(--card) 92%,transparent)) padding-box,var(--grad) border-box;
+}
+.edu-cert .edu-ic{margin:0;flex:none;width:58px;height:58px;border-radius:18px;background:var(--grad);color:#fff}
+.edu-cert .edu-ic svg{width:26px;height:26px}
+@media(max-width:760px){
+  .tl{padding-left:26px}
+  .tl::before{left:6px}
+  .tl-row{grid-template-columns:1fr;gap:12px;padding:22px 20px}
+  .tl-row::before{left:-26px;top:28px}
+  .tl-when{font-size:1.4rem}
+  .edu-grid{grid-template-columns:1fr}
+  .edu-cert{align-items:flex-start}
+}
 
 /* ============ CONTACT ============ */
 .contact{background:linear-gradient(160deg,var(--bg-2),var(--card));color:var(--ink);border:1px solid var(--line);border-radius:30px;padding:clamp(44px,7vw,90px) clamp(34px,6vw,80px);position:relative;overflow:hidden}
