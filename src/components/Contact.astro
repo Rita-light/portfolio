@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from './icons';
+import { profile } from '../data/profile';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+
+const links: { href: string; icon: IconName; k: string; v: string; external?: boolean }[] = [
+  { href: `mailto:${profile.email}`, icon: 'mail', k: t('contact.email'), v: profile.email },
+  { href: profile.phone.href, icon: 'phone', k: t('contact.phone'), v: profile.phone.display },
+  { href: profile.linkedin.url, icon: 'linkedin', k: 'LinkedIn', v: `${profile.linkedin.label} ↗`, external: true },
+  { href: profile.github.url, icon: 'github', k: 'GitHub', v: `${profile.github.label} ↗`, external: true },
+];
+---
+<section class="blk" id="contact">
+  <div class="wrap">
+    <div class="contact rv">
+      <span class="eyebrow">{t('contact.eyebrow')}</span>
+      <h2>{t('contact.titleBefore')}<em>{t('contact.titleEm')}</em>{t('contact.titleAfter')}</h2>
+      <p class="contact-lead">{t('contact.lead')}</p>
+      <div class="contact-grid">
+        <div class="cinfo">
+          {links.map((l) => (
+            <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>
+              <span class="ci-ic"><Icon name={l.icon} /></span>
+              <span class="ci-tx"><span class="k">{l.k}</span><span class="v">{l.v}</span></span>
+            </a>
+          ))}
+          <div>
+            <span class="ci-ic"><Icon name="map-pin" /></span>
+            <span class="ci-tx"><span class="k">{t('contact.location')}</span><span class="v">{profile.location} · {profile.country}</span></span>
+          </div>
+        </div>
+        <div class="contact-cta">
+          <a class="btn btn-cv" href={profile.cv} hreflang="fr" download>{t('contact.ctaCv')}</a>
+          <a class="btn btn-out" href={`mailto:${profile.email}`}>{t('contact.ctaMessage')}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

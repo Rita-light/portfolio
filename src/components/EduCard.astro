@@ -1,0 +1,31 @@
+---
+/* Carte de formation. Variante « cert » : carte vitrine horizontale pour une certification. */
+import Icon from './Icon.astro';
+import type { Credential } from '../data/education';
+import { getLang, tr } from '../i18n/utils';
+
+interface Props {
+  item: Credential;
+  variant?: 'degree' | 'cert';
+}
+
+const { item, variant = 'degree' } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+---
+{variant === 'cert' ? (
+  <div class="edu edu-cert glass rv">
+    <span class="edu-ic"><Icon name={item.icon} /></span>
+    <div>
+      <span class="yr">{tr(item.date, lang)}</span>
+      <h4>{tr(item.title, lang)}</h4>
+      <p>{tr(item.school, lang)}</p>
+    </div>
+  </div>
+) : (
+  <div class="edu glass rv">
+    <span class="edu-ic"><Icon name={item.icon} /></span>
+    <span class="yr">{tr(item.date, lang)}</span>
+    <h4>{tr(item.title, lang)}</h4>
+    <p>{tr(item.school, lang)}</p>
+  </div>
+)}

@@ -1,0 +1,35 @@
+/* ============ RESET & BASE ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+/* Lien « Aller au contenu » : invisible, apparaît au premier Tab (navigation au clavier) */
+.skip-link{position:absolute;left:16px;top:-60px;z-index:100;padding:10px 16px;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;transition:top .2s}
+.skip-link:focus{top:12px}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent-deep);font-weight:500;
+}
+
+/* Boutons (hero + contact) */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.98rem;
+  padding:14px 24px;border-radius:999px;transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer;
+}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -12px var(--accent)}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}

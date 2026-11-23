@@ -1,0 +1,27 @@
+---
+/* Sélecteur de langue « FR | EN » : lien vers la même page dans chaque langue. */
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLang, languages, useTranslations, type Lang } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const items = (Object.keys(languages) as Lang[]).map((l) => ({
+  lang: l,
+  name: languages[l],
+  href: getRelativeLocaleUrl(l),
+}));
+---
+<div class="lang-switch" role="group" aria-label={t('nav.lang')}>
+  {items.map((i) => (
+    <a
+      href={i.href}
+      hreflang={i.lang}
+      lang={i.lang}
+      title={i.name}
+      aria-current={i.lang === lang ? 'page' : undefined}
+      data-lang-link
+    >{i.lang.toUpperCase()}</a>
+  ))}
+</div>
+
+<script>import '../scripts/lang-switch';</script>

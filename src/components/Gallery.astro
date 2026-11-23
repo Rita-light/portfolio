@@ -1,0 +1,28 @@
+---
+/*
+ * Galerie d'images qui défilent automatiquement (script : src/scripts/gallery.ts).
+ * « class » donne le cadre : « shot-web », « shot-web tall », « shot-mob » ou « pthumb shot ».
+ * Le contenu passé entre les balises (par ex. l'étiquette <b> d'une carte) est placé dans la galerie.
+ */
+import type { GalleryData } from '../data/projects';
+import { getLang, tr, useTranslations } from '../i18n/utils';
+
+interface Props {
+  class: string;
+  gallery: GalleryData;
+}
+
+const { class: frame, gallery } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+<div class:list={[frame, 'gallery']} data-gallery data-interval={gallery.interval} data-dot-label={t('gallery.dot')}>
+  {gallery.images.map((im, i) => (
+    <img src={im.src} alt={tr(im.alt, lang)} class={i === 0 ? 'on' : undefined} loading="lazy" />
+  ))}
+  {gallery.label && <span class="glabel">{tr(gallery.label, lang)}</span>}
+  <slot />
+  <div class="gdots"></div>
+</div>
+
+<script>import '../scripts/gallery';</script>

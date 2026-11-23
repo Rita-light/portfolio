@@ -1,0 +1,20 @@
+---
+import FeatureProject from './FeatureProject.astro';
+import ProjectCard from './ProjectCard.astro';
+import SectionHead from './SectionHead.astro';
+import { featuredProjects, projects } from '../data/projects';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+---
+<section class="blk" id="projects">
+  <div class="wrap">
+    <SectionHead num="03" title={t('projects.title')} />
+
+    {featuredProjects.map((project) => <FeatureProject project={project} />)}
+
+    <div class="proj-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </div>
+</section>

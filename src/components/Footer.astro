@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import { profile } from '../data/profile';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+// année calculée au build : chaque déploiement la met à jour
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="fbrand serif">{profile.fullName}</div>
+  <p>{t('role')} · {profile.location} · {year}</p>
+  <div class="fsocial">
+    <a href={profile.linkedin.url} target="_blank" rel="noopener"><Icon name="linkedin" />LinkedIn</a>
+    <a href={profile.github.url} target="_blank" rel="noopener"><Icon name="github" />GitHub</a>
+  </div>
+</footer>

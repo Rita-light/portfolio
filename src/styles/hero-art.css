@@ -1,0 +1,77 @@
+/* ============ HERO ART (components/HeroArt.astro : illustration abstraite, CSS pur) ============
+   Toutes les tailles sont en cqw (% de la largeur du conteneur) :
+   l'illustration se redimensionne d'un bloc, du téléphone à l'ordinateur.
+   Calques, du fond vers l'avant :
+   halo > grille de points > anneaux > noyau « RM » > tuiles en orbite */
+.hero-art{
+  --orbit:38cqw;                    /* rayon de l'orbite des tuiles */
+  --tile:16cqw;                     /* taille d'une tuile */
+  --count:7;                        /* nombre de tuiles (fourni par HeroArt.astro) */
+  position:relative;width:100%;max-width:500px;margin-inline:auto;aspect-ratio:1;
+  container-type:inline-size;isolation:isolate;
+}
+.hero-art>*{position:absolute}
+
+/* Halo lumineux derrière le noyau */
+.hero-art::before{content:"";position:absolute;inset:20%;z-index:-1;border-radius:50%;background:var(--grad);filter:blur(60px);opacity:.45}
+
+/* Grille de points, estompée vers les bords */
+.ha-grid{
+  inset:0;
+  background:radial-gradient(circle at 1px 1px,var(--line) 1px,transparent 0) 0 0/22px 22px;
+  -webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);
+}
+
+/* Anneaux concentriques (centrés avec translate) */
+.ha-ring{left:50%;top:50%;translate:-50% -50%;border-radius:50%}
+.ha-ring--outer{width:96cqw;height:96cqw;border:1px solid var(--line-soft)}
+.ha-ring--orbit{
+  width:calc(var(--orbit) * 2);height:calc(var(--orbit) * 2);
+  border:1.5px dashed color-mix(in oklab,var(--accent) 45%,transparent);
+  animation:ha-spin 80s linear infinite;
+}
+/* petit satellite lumineux qui tourne avec l'orbite */
+.ha-ring--orbit::after{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 14px var(--accent-2)}
+.ha-ring--inner{width:52cqw;height:52cqw;border:1px solid var(--line);background:radial-gradient(circle,var(--accent-tint),transparent 70%)}
+
+/* Noyau central : verre + bordure en dégradé + monogramme */
+.ha-core{
+  left:50%;top:50%;translate:-50% -50%;
+  width:32cqw;height:32cqw;border-radius:30%;
+  display:grid;place-content:center;justify-items:center;gap:.8cqw;
+  border:1.5px solid transparent;
+  background:linear-gradient(color-mix(in oklab,var(--card) 88%,transparent),color-mix(in oklab,var(--card) 88%,transparent)) padding-box,var(--grad) border-box;
+  box-shadow:0 20px 50px -20px color-mix(in oklab,var(--accent) 60%,transparent);
+}
+.ha-core b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:11cqw;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ha-core small{font-family:var(--mono);font-size:max(.55rem,2.2cqw);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* Tuiles en orbite : chaque tuile reçoit son rang (--i) depuis HeroArt.astro. L'angle (--a)
+   en est déduit, en partant du haut (-90deg) et en répartissant les tuiles à égale distance.
+   La tuile est placée sur le cercle, puis tournée en sens inverse pour rester droite. */
+.ha-tile{
+  --i:0;
+  --a:calc(-90deg + 360deg / var(--count) * var(--i));
+  left:50%;top:50%;width:var(--tile);height:var(--tile);
+  margin:calc(var(--tile) / -2) 0 0 calc(var(--tile) / -2);
+  transform:rotate(var(--a)) translate(var(--orbit)) rotate(calc(var(--a) * -1));
+  display:grid;place-content:center;justify-items:center;gap:1cqw;
+  border-radius:28%;color:var(--accent-deep);
+  background:color-mix(in oklab,var(--card) 60%,transparent);
+  border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 14px 30px -16px rgba(0,0,0,.7);
+  animation:ha-float 6s ease-in-out infinite;
+  animation-delay:calc(var(--i) * -1s);  /* décalage : les tuiles ne flottent pas en même temps */
+}
+.ha-tile svg{width:6cqw;height:6cqw;stroke-linecap:round;stroke-linejoin:round}
+.ha-tile i{font-style:normal;font-family:var(--mono);font-size:max(.5rem,1.8cqw);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+/* une tuile sur deux en bleu */
+.ha-tile--alt{color:var(--accent-2)}
+/* tuile mise en avant (« Code ») */
+.ha-tile--featured{background:var(--grad);border-color:transparent;color:#fff}
+.ha-tile--featured i{color:rgba(255,255,255,.85)}
+
+@keyframes ha-spin{to{rotate:360deg}}
+@keyframes ha-float{50%{translate:0 -1.6cqw}}
+@media(prefers-reduced-motion:reduce){.ha-ring--orbit,.ha-tile{animation:none}}

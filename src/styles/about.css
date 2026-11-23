@@ -1,0 +1,9 @@
+/* ============ ABOUT (components/About.astro) ============ */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,80px)}
+.about-lead{font-family:var(--serif);font-size:clamp(1.4rem,2.4vw,1.95rem);line-height:1.42;letter-spacing:-.01em;font-weight:400}
+.about-lead b{color:var(--accent-deep);font-weight:500;font-style:italic}
+.about-body p{color:var(--ink-soft);margin-bottom:1.1em;max-width:54ch}
+.about-body p:last-child{margin-bottom:0}
+.values{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.values span{font-family:var(--mono);font-size:.74rem;padding:7px 13px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft)}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:28px}}

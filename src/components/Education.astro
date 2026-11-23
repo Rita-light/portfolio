@@ -1,0 +1,23 @@
+---
+import EduCard from './EduCard.astro';
+import SectionHead from './SectionHead.astro';
+import { certifications, degrees } from '../data/education';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+---
+<section class="blk" id="formation">
+  <div class="wrap">
+    <SectionHead num="05" title={t('formation.title')} />
+
+    <h3 class="sub-label">{t('formation.degrees')}</h3>
+    <div class="edu-grid">
+      {degrees.map((item) => <EduCard item={item} />)}
+    </div>
+
+    <h3 class="sub-label">{t('formation.certification')}</h3>
+    <div class="edu-grid single">
+      {certifications.map((item) => <EduCard item={item} variant="cert" />)}
+    </div>
+  </div>
+</section>

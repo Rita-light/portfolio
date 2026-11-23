@@ -1,0 +1,37 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { profile } from '../data/profile';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+
+// Les ids des sections sont les mêmes dans les deux langues.
+const links = [
+  { href: '#about', label: t('nav.about') },
+  { href: '#skills', label: t('nav.skills') },
+  { href: '#projects', label: t('nav.projects') },
+  { href: '#experience', label: t('nav.experience') },
+  { href: '#formation', label: t('nav.formation') },
+];
+---
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">{profile.firstName}&nbsp;<b>{profile.middleName}</b></a>
+    <div class="nav-links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </div>
+    <div class="nav-actions">
+      <LangSwitch />
+      <a class="nav-cta" href="#contact">{t('nav.contact')}</a>
+      <button class="nav-burger" id="navBurger" aria-label={t('nav.menu')} aria-expanded="false" aria-controls="navMobile"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  {/* barre de progression de lecture, remplie au scroll par src/scripts/nav.ts */}
+  <div id="scrollbar"></div>
+  <div class="nav-mobile" id="navMobile">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a class="nm-cta" href="#contact">{t('nav.contact')}</a>
+  </div>
+</nav>
+
+<script>import '../scripts/nav';</script>

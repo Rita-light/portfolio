@@ -1,0 +1,37 @@
+---
+/* Grande carte d'un projet phare : texte + captures (styles : src/styles/projects.css). */
+import Gallery from './Gallery.astro';
+import type { FeaturedProject } from '../data/projects';
+import { getLang, pick, tr } from '../i18n/utils';
+
+interface Props {
+  project: FeaturedProject;
+}
+
+const { project: p } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+
+const frames = { web: 'shot-web', 'web-tall': 'shot-web tall', mobile: 'shot-mob' } as const;
+// « reversed » : captures à gauche, texte à droite
+const parts = p.reversed ? (['shots', 'text'] as const) : (['text', 'shots'] as const);
+---
+<article class:list={['feature glass rv', { alt: p.reversed }]}>
+  {parts.map((part) => part === 'text' ? (
+    <div class="feature-text">
+      <span class="feature-badge">{tr(p.badge, lang)}</span>
+      <h3>{p.url ? <a href={p.url} target="_blank" rel="noopener">{p.title} ↗</a> : p.title}</h3>
+      <p class="feature-sub">{tr(p.subtitle, lang)}</p>
+      <p class="feature-desc">{tr(p.description, lang)}</p>
+      <ul class="flist">
+        {pick(p.highlights, lang).map((h) => <li>{h}</li>)}
+      </ul>
+      <div class="feature-tags">
+        {p.tags.map((tag) => <span>{tag}</span>)}
+      </div>
+    </div>
+  ) : (
+    <div class:list={['feature-shots', { stack: p.reversed }]}>
+      {p.shots.map((shot) => <Gallery class={frames[shot.frame]} gallery={shot} />)}
+    </div>
+  ))}
+</article>
