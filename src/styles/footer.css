@@ -1,0 +1,8 @@
+/* ============ FOOTER (components/Footer.astro) ============ */
+footer{padding:46px 0 60px;text-align:center;color:var(--ink-faint)}
+footer .fbrand{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:8px}
+footer p{font-size:.82rem;font-family:var(--mono);letter-spacing:.04em}
+.fsocial{margin-top:14px;display:flex;gap:10px;justify-content:center}
+.fsocial a{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.78rem;color:var(--accent-deep);padding:7px 15px;border:1px solid var(--line);border-radius:999px;transition:border-color .2s,background .2s,color .2s}
+.fsocial a svg{width:15px;height:15px}
+.fsocial a:hover{border-color:var(--accent-deep);background:var(--accent-tint)}

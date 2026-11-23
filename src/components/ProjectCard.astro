@@ -1,0 +1,33 @@
+---
+/* Carte d'un projet secondaire. Vignette : galerie, capture unique ou glyphe de code. */
+import Gallery from './Gallery.astro';
+import type { ProjectCard } from '../data/projects';
+import { getLang, tr } from '../i18n/utils';
+
+interface Props {
+  project: ProjectCard;
+}
+
+const { project: p } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const thumb = p.thumb;
+const label = tr(p.label, lang);
+---
+<article class="pcard glass glass--lift rv">
+  {thumb.kind === 'gallery' && (
+    <Gallery class="pthumb shot" gallery={thumb.gallery}><b>{label}</b></Gallery>
+  )}
+  {thumb.kind === 'image' && (
+    <div class="pthumb shot"><img src={thumb.image.src} alt={tr(thumb.image.alt, lang)} loading="lazy" /><b>{label}</b></div>
+  )}
+  {thumb.kind === 'code' && (
+    <div class="pthumb code"><span class="glyph">{thumb.glyph}<small>{thumb.caption}</small></span><b>{label}</b></div>
+  )}
+  <div class="pcard-body">
+    <h3>{tr(p.title, lang)}</h3>
+    <p>{tr(p.description, lang)}</p>
+    <div class="pcard-tags">
+      {p.tags.map((tag) => <span>{tr(tag, lang)}</span>)}
+    </div>
+  </div>
+</article>

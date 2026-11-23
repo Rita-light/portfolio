@@ -1,0 +1,23 @@
+---
+import SectionHead from './SectionHead.astro';
+import { profile } from '../data/profile';
+import { getLang, pick, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+<section class="blk" id="about">
+  <div class="wrap">
+    <SectionHead num="01" title={t('about.title')} />
+    <div class="about-grid">
+      <p class="about-lead rv">{t('about.leadBefore')}<b>{t('about.leadStrong')}</b>{t('about.leadAfter')}</p>
+      <div class="about-body rv">
+        <p>{t('about.p1')}</p>
+        <p>{t('about.p2')}</p>
+        <div class="values">
+          {pick(profile.values, lang).map((v) => <span>{v}</span>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

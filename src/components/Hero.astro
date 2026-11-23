@@ -1,0 +1,35 @@
+---
+import HeroArt from './HeroArt.astro';
+import { profile } from '../data/profile';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+
+const meta = [
+  { k: t('hero.metaEducation'), v: t('hero.metaEducationValue') },
+  { k: t('hero.metaSpecialty'), v: t('hero.metaSpecialtyValue') },
+  { k: t('hero.metaLanguages'), v: t('hero.metaLanguagesValue') },
+];
+---
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text rv">
+        <span class="eyebrow">{t('role')} · {profile.location}</span>
+        <h1>{profile.firstName} {profile.middleName}<br /><em>{profile.lastName}</em></h1>
+        <p class="hero-lead">{t('hero.lead')}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">{t('hero.ctaProjects')}</a>
+          <a class="btn btn-ghost" href={profile.cv} hreflang="fr" download>{t('hero.ctaCv')}</a>
+        </div>
+        <div class="hero-meta">
+          {meta.map((m) => <div><span class="k">{m.k}</span><span class="v">{m.v}</span></div>)}
+        </div>
+      </div>
+      <div class="hero-visual rv">
+        <HeroArt />
+        <span class="tag">{t('hero.tag')}</span>
+      </div>
+    </div>
+  </div>
+</header>

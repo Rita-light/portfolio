@@ -1,0 +1,23 @@
+---
+/*
+ * La page complète. Elle est identique pour les deux langues : chaque composant
+ * lit la langue de la page (Astro.currentLocale) et affiche ses textes en conséquence.
+ */
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import About from './About.astro';
+import Skills from './Skills.astro';
+import Projects from './Projects.astro';
+import Experience from './Experience.astro';
+import Education from './Education.astro';
+import Contact from './Contact.astro';
+---
+<Base>
+  <Hero />
+  <About />
+  <Skills />
+  <Projects />
+  <Experience />
+  <Education />
+  <Contact />
+</Base>

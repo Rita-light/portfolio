@@ -1,0 +1,61 @@
+---
+/*
+ * Mise en page commune aux deux langues : <head> (SEO, aperçus de partage, hreflang),
+ * lien d'évitement, barre de navigation, contenu de la page et pied de page.
+ */
+import '../styles/global.css';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { defaultLang, getLang, languages, useTranslations, type Lang } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const canonical = getAbsoluteLocaleUrl(lang);
+const alternates = (Object.keys(languages) as Lang[]).map((l) => ({ lang: l, href: getAbsoluteLocaleUrl(l) }));
+const otherLocales = alternates.filter((a) => a.lang !== lang).map((a) => useTranslations(a.lang)('meta.ogLocale'));
+const ogImage = new URL(t('meta.ogImage'), Astro.site).href;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{t('meta.title')}</title>
+  <meta name="description" content={t('meta.description')} />
+  <link rel="canonical" href={canonical} />
+  {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+  <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(defaultLang)} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={t('meta.title')} />
+  <meta property="og:description" content={t('meta.ogDescription')} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content={t('meta.ogLocale')} />
+  {otherLocales.map((l) => <meta property="og:locale:alternate" content={l} />)}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={t('meta.title')} />
+  <meta name="twitter:description" content={t('meta.ogDescription')} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="theme-color" content="#09090F" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip-link" href="#top">{t('skip')}</a>
+  <Nav />
+  <main id="top">
+    <slot />
+  </main>
+  <Footer />
+  <script>import '../scripts/reveal';</script>
+</body>
+</html>

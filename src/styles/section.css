@@ -1,0 +1,15 @@
+/* ============ SECTION SHELL (components/SectionHead.astro : « 01 — Titre ———— ») ============ */
+section.blk{padding:clamp(64px,10vw,120px) 0;position:relative}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(34px,5vw,60px)}
+.sec-num{font-family:var(--mono);font-size:.8rem;color:var(--accent-deep)}
+.sec-title{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.2vw,3.1rem);letter-spacing:-.02em;line-height:1.04}
+.rule{height:1px;background:var(--line);flex:1;align-self:center;margin-bottom:8px}
+
+/* Sous-titre de groupe (« Développement », « Diplômes »…) */
+.sub-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.sub-label::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+
+/* avec le menu burger, l'ancre s'arrête sous la barre collante, pas derrière */
+@media(max-width:1040px){
+  section.blk{scroll-margin-top:64px}
+}

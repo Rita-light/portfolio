@@ -1,0 +1,57 @@
+/* ============ NAV (components/Nav.astro) ============ */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in oklab,var(--bg) 86%,transparent);
+  backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid var(--line-soft);
+  transition:padding .3s,background .3s,box-shadow .3s;
+}
+nav.shrink{background:color-mix(in oklab,var(--bg) 94%,transparent);box-shadow:0 6px 24px -16px rgba(0,0,0,.6)}
+#scrollbar{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--grad);transform:scaleX(0);transform-origin:0 50%;transition:transform .1s linear;z-index:2}
+.nav-in{
+  max-width:var(--maxw);margin:0 auto;padding:16px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;transition:padding .3s;
+}
+nav.shrink .nav-in{padding:10px 40px}
+.brand{font-family:var(--serif);font-size:1.18rem;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+.brand b{color:var(--accent-deep);font-weight:600}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:.92rem;color:var(--ink-soft);font-weight:500;transition:color .2s;position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--accent);transition:width .25s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+/* Groupe de droite : sélecteur de langue + bouton contact + burger */
+.nav-actions{display:flex;align-items:center;gap:14px}
+.nav-cta{
+  font-size:.9rem;font-weight:600;padding:9px 18px;border-radius:999px;
+  background:var(--grad);color:#fff;transition:transform .2s,filter .2s;
+}
+.nav-cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* Sélecteur de langue FR | EN (components/LangSwitch.astro) */
+.lang-switch{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:color-mix(in oklab,var(--card) 60%,transparent)}
+.lang-switch a{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.08em;padding:5px 10px;border-radius:999px;color:var(--ink-soft);transition:color .2s,background .2s}
+.lang-switch a:hover{color:var(--ink)}
+.lang-switch a[aria-current="page"]{background:var(--accent-tint);color:var(--accent-deep)}
+.lang-switch a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:transparent;cursor:pointer;padding:0;transition:border-color .2s,background .2s}
+.nav-burger span{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);margin:0 auto;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .2s}
+.nav-burger.open{border-color:var(--accent-deep)}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* superposé sous la barre : s'ouvrir/se fermer ne décale jamais le contenu de la page */
+.nav-mobile{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;gap:2px;padding:0 28px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s,padding .3s;background:color-mix(in oklab,var(--bg) 96%,transparent);border-top:1px solid var(--line-soft)}
+.nav-mobile.open{max-height:420px;opacity:1;padding:14px 28px 22px}
+.nav-mobile a{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--ink);padding:11px 0;border-bottom:1px solid var(--line-soft);transition:color .2s,padding-left .2s}
+.nav-mobile a:hover{color:var(--accent-deep);padding-left:6px}
+.nav-mobile .nm-cta{font-family:var(--sans);font-size:1rem;font-weight:600;color:var(--accent-deep);border-bottom:none;margin-top:8px}
+/* 1040px : en dessous, les 5 liens + le sélecteur de langue + le bouton ne tiennent plus sur une ligne.
+   Le sélecteur de langue reste visible dans la barre, à côté du burger. */
+@media(max-width:1040px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-burger{display:flex}
+  .nav-mobile{display:flex}
+}

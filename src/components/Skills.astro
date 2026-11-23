@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { skills } from '../data/skills';
+import { getLang, tr, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+<section class="blk" id="skills">
+  <div class="wrap">
+    <SectionHead num="02" title={t('skills.title')} />
+    <div class="skills-grid">
+      {skills.map((group) => (
+        <div class="skill-card glass glass--lift rv">
+          <h3><i><Icon name={group.icon} /></i>{tr(group.title, lang)}</h3>
+          <div class="chips">
+            {group.chips.map((c) => <span>{tr(c, lang)}</span>)}
+            {group.softChips?.map((c) => <span class="soft">{tr(c, lang)}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

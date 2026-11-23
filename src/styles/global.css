@@ -1,0 +1,18 @@
+/* ============================================================
+   Styles du portfolio : un fichier par partie de la page,
+   importés dans le même ordre que la page (l'ordre compte pour la cascade).
+   ============================================================ */
+@import './tokens.css';
+@import './base.css';
+@import './nav.css';
+@import './hero.css';
+@import './hero-art.css';
+@import './section.css';
+@import './glass.css';
+@import './about.css';
+@import './skills.css';
+@import './projects.css';
+@import './timeline.css';
+@import './contact.css';
+@import './footer.css';
+@import './reveal.css';

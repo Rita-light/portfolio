@@ -1,0 +1,29 @@
+/* ============ HERO (components/Hero.astro) ============ */
+.hero{padding:clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px);position:relative}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 82% -20%,var(--accent-tint),transparent 58%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(3.1rem,7.2vw,6rem);line-height:.96;letter-spacing:-.025em;
+  margin:.32em 0 .42em;
+}
+.hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-lead{
+  font-family:var(--serif);font-size:clamp(1.2rem,1.9vw,1.5rem);
+  line-height:1.5;color:var(--ink-soft);max-width:33ch;font-weight:400;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-meta{display:flex;gap:26px;margin-top:42px;flex-wrap:wrap}
+.hero-meta div{display:flex;flex-direction:column;gap:3px}
+.hero-meta .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.hero-meta .v{font-size:.96rem;font-weight:600}
+.hero-visual{position:relative;min-width:0}
+.hero-visual .tag{
+  display:table;margin:18px auto 0;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  background:color-mix(in oklab,var(--ink) 82%,transparent);color:var(--bg);
+  padding:7px 12px;border-radius:8px;
+}
+@media(max-width:820px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+}

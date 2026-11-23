@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://porfolio-rita-merveille.vercel.app/sitemap-index.xml

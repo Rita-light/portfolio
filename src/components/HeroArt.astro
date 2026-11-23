@@ -1,0 +1,31 @@
+---
+/*
+ * Illustration abstraite du métier, dessinée en CSS (styles : src/styles/hero-art.css) :
+ * un noyau « RM » entouré d'une orbite de domaines (src/data/domains.ts).
+ * L'angle de chaque tuile est calculé à partir de son rang (--i) et du nombre de tuiles (--count) :
+ * ajouter un domaine dans domains.ts suffit pour l'ajouter à l'orbite.
+ */
+import Icon from './Icon.astro';
+import { domains } from '../data/domains';
+import { profile } from '../data/profile';
+import { getLang, tr, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const initials = profile.firstName[0] + profile.middleName[0];
+---
+<div class="hero-art" role="img" aria-label={t('hero.artLabel')} style={`--count:${domains.length}`}>
+  <span class="ha-grid"></span>
+  <span class="ha-ring ha-ring--outer"></span>
+  <span class="ha-ring ha-ring--orbit"></span>
+  <span class="ha-ring ha-ring--inner"></span>
+
+  <div class="ha-core"><b>{initials}</b><small>full-stack</small></div>
+
+  {domains.map((d, i) => (
+    <span
+      class:list={['ha-tile', { 'ha-tile--featured': i === 0, 'ha-tile--alt': i % 2 === 1 }]}
+      style={`--i:${i}`}
+    ><Icon name={d.icon} /><i>{tr(d.label, lang)}</i></span>
+  ))}
+</div>

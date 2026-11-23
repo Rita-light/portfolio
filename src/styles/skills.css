@@ -1,0 +1,15 @@
+/* ============ SKILLS (components/Skills.astro) ============ */
+/* halo lumineux derrière la section (effet de verre) */
+#skills{isolation:isolate;overflow:hidden}
+#skills::before{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none;width:480px;height:480px;top:14%;left:-200px;background:var(--accent-2);opacity:.22}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.5vw,30px)}
+.skill-card{padding:26px 28px}
+.skill-card h3{font-family:var(--sans);font-size:1.02rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.skill-card h3 i{width:34px;height:34px;border-radius:10px;background:var(--accent-tint);color:var(--accent-deep);display:grid;place-items:center;flex:none;font-style:normal}
+.skill-card h3 i svg{width:18px;height:18px;stroke-linecap:round;stroke-linejoin:round}
+.skill-card:hover h3 i{background:var(--accent-deep);color:#fff;transition:background .2s,color .2s}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-family:var(--mono);font-size:.78rem;background:var(--bg-2);color:var(--ink);padding:6px 11px;border-radius:7px}
+.chips span.soft{color:var(--ink-faint);background:transparent;border:1px dashed var(--line)}
+@media(max-width:680px){.skills-grid{grid-template-columns:1fr}}

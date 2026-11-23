@@ -1,0 +1,23 @@
+---
+import SectionHead from './SectionHead.astro';
+import TimelineItem from './TimelineItem.astro';
+import { devJobs, otherJobs } from '../data/experience';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLang(Astro.currentLocale));
+---
+<section class="blk" id="experience">
+  <div class="wrap">
+    <SectionHead num="04" title={t('experience.title')} />
+
+    <h3 class="sub-label">{t('experience.dev')}</h3>
+    <div class="tl">
+      {devJobs.map((job) => <TimelineItem job={job} />)}
+    </div>
+
+    <h3 class="sub-label">{t('experience.other')}</h3>
+    <div class="tl">
+      {otherJobs.map((job) => <TimelineItem job={job} />)}
+    </div>
+  </div>
+</section>

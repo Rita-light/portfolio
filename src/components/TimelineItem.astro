@@ -1,0 +1,38 @@
+---
+/* Une carte de la ligne de temps (styles : src/styles/timeline.css). */
+import type { Job } from '../data/experience';
+import { getLang, pick, tr, useTranslations } from '../i18n/utils';
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+// « Août – Aujourd'hui · Québec, QC » (la période est facultative)
+const when = [job.period && tr(job.period, lang), tr(job.location, lang)].filter(Boolean).join(' · ');
+---
+<div class:list={['tl-row glass rv', { 'is-now': job.current }]}>
+  <div class="tl-when">
+    {job.year}<small>{when}</small>
+    {job.current && <span class="now-badge">{t('experience.current')}</span>}
+  </div>
+  <div class="tl-what">
+    <h4>{tr(job.title, lang)}</h4>
+    <p class="org">{job.orgUrl ? <a href={job.orgUrl} target="_blank" rel="noopener">{job.org} ↗</a> : job.org}</p>
+    <ul>
+      {pick(job.bullets, lang).map((b) => <li>{b}</li>)}
+      {job.products && (
+        <li>
+          {t('experience.products')}{' '}
+          {job.products.map((product, i) => (
+            <>{i > 0 && ` ${t('experience.and')} `}<a href={product.url} target="_blank" rel="noopener">{product.name} ↗</a></>
+          ))}
+        </li>
+      )}
+      {job.stack && <li>{t('experience.stack')} {tr(job.stack, lang)}</li>}
+    </ul>
+  </div>
+</div>

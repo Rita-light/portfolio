@@ -1,0 +1,21 @@
+/* ============ TOKENS (couleurs, polices, tailles réutilisées) ============ */
+:root{
+  --bg:#09090F;
+  --bg-2:#13131D;
+  --card:#14141F;
+  --ink:#ECEAF4;
+  --ink-soft:#9D9BB2;
+  --ink-faint:#6C6A85;
+  --line:rgba(255,255,255,.10);
+  --line-soft:rgba(255,255,255,.055);
+  /* accents — bleu + violet */
+  --accent:oklch(.66 .19 278);        /* violet */
+  --accent-2:oklch(.68 .16 248);      /* bleu */
+  --accent-deep:oklch(.76 .15 274);   /* plus clair, pour le texte sur fond sombre */
+  --accent-tint:oklch(.66 .19 278 / .16);
+  --grad:linear-gradient(120deg,oklch(.72 .15 246),oklch(.62 .2 288));
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Hanken Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --maxw:1180px;
+}
